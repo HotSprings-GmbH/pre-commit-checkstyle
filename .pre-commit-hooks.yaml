@@ -1,0 +1,7 @@
+- id: checkstyle
+  name: Checkstyle
+  description: "Runs checkstyle check on Java files"
+  language: docker
+  entry: "java -jar /opt/checkstyle.jar"
+  files: \.java$
+  require_serial: true

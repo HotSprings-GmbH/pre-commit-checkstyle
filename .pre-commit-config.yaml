@@ -1,0 +1,62 @@
+repos:
+  - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
+    rev: v2.2.0
+    hooks:
+      - id: commitlint
+        additional_dependencies: ["@commitlint/config-conventional"]
+        stages:
+          - commit-msg
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.4.0
+    hooks:
+      - id: end-of-file-fixer
+        stages:
+          - commit
+          - manual
+      - id: check-json
+      - id: check-xml
+      - id: check-yaml
+        stages:
+          - commit
+          - manual
+      - id: check-added-large-files
+        args:
+          - "--maxkb=10000"
+        stages:
+          - commit
+          - manual
+      - id: check-case-conflict
+        stages:
+          - commit
+          - manual
+      - id: check-symlinks
+        stages:
+          - commit
+          - manual
+      - id: check-merge-conflict
+        stages:
+          - commit
+          - merge-commit
+          - manual
+      - id: forbid-new-submodules
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v2.2.1
+    hooks:
+      - id: prettier
+        stages:
+          - commit
+          - manual
+  - repo: https://github.com/IamTheFij/docker-pre-commit
+    rev: v2.0.0
+    hooks:
+      - id: hadolint
+        stages:
+          - commit
+  - repo: .
+    rev: main
+    hooks:
+      - id: checkstyle
+        args:
+          - "-c=test/checkstyle.xml"
+        stages:
+          - commit
