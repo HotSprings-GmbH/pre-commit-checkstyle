@@ -56,7 +56,6 @@ repos:
     rev: main
     hooks:
       - id: checkstyle
-        args:
-          - "-c=test/checkstyle.xml"
+        args: ["8.41", "-c=test/checkstyle.xml"]
         stages:
           - commit
